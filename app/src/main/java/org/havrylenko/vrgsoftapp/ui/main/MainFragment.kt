@@ -42,6 +42,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         setupSearchView()
+        setupFavoriteButton()
 
         newsAdapter.setOnItemClickListener {
             val bundle = bundleOf("article" to it)
@@ -62,7 +63,6 @@ class MainFragment : Fragment() {
                 is Resource.Success -> {
                     mBinding.pagProgressBar.visibility = View.GONE
                     if (response.data == null) {
-
                         viewModel.newsLiveData.value?.let { newsResponse ->
                             if (newsResponse is Resource.Success) {
                                 newsResponse.data?.let {
@@ -89,6 +89,18 @@ class MainFragment : Fragment() {
                 }
                 null -> {}
             }
+        }
+    }
+
+    private fun setupFavoriteButton() {
+        try {
+            mBinding.favoriteButton.setOnClickListener {
+                view?.findNavController()?.navigate(
+                    R.id.action_mainFragment_to_favouriteFragment
+                )
+            }
+        } catch (e: Exception) {
+            Log.e("MainFragment", "Favorite button not found in layout: ${e.message}")
         }
     }
 
