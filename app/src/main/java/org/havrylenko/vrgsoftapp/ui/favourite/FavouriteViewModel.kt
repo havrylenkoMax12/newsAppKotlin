@@ -34,4 +34,9 @@ class FavouriteViewModel @Inject constructor(
         repository.deleteFromFavourite(article)
         getFavoriteArticles()
     }
+
+    fun addToFavorites(article: Article) = viewModelScope.launch(Dispatchers.IO) {
+        repository.addToFavourite(article)
+        getFavoriteArticles()
+    }
 }

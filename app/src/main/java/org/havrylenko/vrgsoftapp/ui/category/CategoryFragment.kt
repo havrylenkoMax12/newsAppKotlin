@@ -109,7 +109,6 @@ class CategoryFragment : Fragment() {
 
         categoryAdapter.differ.submitList(categories)
 
-        // Load general category by default
         viewModel.getNewsByCategory("general")
     }
 
