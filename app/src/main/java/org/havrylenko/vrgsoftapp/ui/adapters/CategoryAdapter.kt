@@ -36,7 +36,6 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>
         holder.binding.apply {
             categoryName.text = category.name
 
-            // Set background and text color based on selection state
             if (category.isSelected) {
                 categoryCard.setCardBackgroundColor(
                     ContextCompat.getColor(root.context, R.color.primary_color)
