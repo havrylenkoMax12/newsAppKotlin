@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import org.havrylenko.vrgsoftapp.R
 import org.havrylenko.vrgsoftapp.databinding.ItemArticleBinding
 import org.havrylenko.vrgsoftapp.models.Article
+import org.havrylenko.vrgsoftapp.utils.DateUtil
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
@@ -41,7 +42,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
                 .into(articleImage)
             articleImage.clipToOutline = true
             articleTitle.text = article.title ?: "No Title"
-            articleDate.text = article.publishedAt ?: "Unknown Date"
+            articleDate.text = DateUtil.formatDisplayDate(article.publishedAt)
         }
 
         holder.itemView.setOnClickListener {
