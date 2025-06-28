@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">VrgSoftApp</string>
+    <string name="API_KEY">a166fddf4f7c40fe8d18d86013ccd444</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="categories">Categories</string>
+    <string name="home">Home</string>
+</resources>
