@@ -14,7 +14,12 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(private val repository: NewsRepository): ViewModel() {
 
     val newsLiveData: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
+    val searchNewsLiveData: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
+
     var newsPage = 1
+    var searchPage = 1
+    var currentSearchQuery: String? = null
+    private var isSearching = false
 
     init {
         getNews("us")
@@ -33,4 +38,44 @@ class MainViewModel @Inject constructor(private val repository: NewsRepository):
             }
         }
 
+    fun searchNews(query: String) {
+        if (query.isBlank()) {
+            clearSearch()
+            return
+        }
+
+        isSearching = true
+        currentSearchQuery = query
+        searchPage = 1
+
+        viewModelScope.launch {
+            searchNewsLiveData.postValue(Resource.Loading())
+            val response = repository.getSearchNews(query = query, pageNumber = searchPage)
+            if (response.isSuccessful) {
+                response.body().let { res ->
+                    searchNewsLiveData.postValue(Resource.Success(res))
+                }
+            } else {
+                searchNewsLiveData.postValue(Resource.Error(message = response.message()))
+            }
+        }
+    }
+
+    fun clearSearch() {
+        isSearching = false
+        currentSearchQuery = null
+        searchPage = 1
+        searchNewsLiveData.postValue(Resource.Success(null))
+    }
+
+    fun isCurrentlySearching(): Boolean = isSearching
+
+    fun refreshNews() {
+        if (isSearching && !currentSearchQuery.isNullOrBlank()) {
+            searchNews(currentSearchQuery!!)
+        } else {
+            newsPage = 1
+            getNews("us")
+        }
+    }
 }
