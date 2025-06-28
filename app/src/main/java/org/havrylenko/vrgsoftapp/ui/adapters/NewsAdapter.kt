@@ -36,7 +36,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
         val article = differ.currentList[position]
         holder.binding.apply {
             Glide.with(root)
-                .load(article.urlToImage ?: R.drawable.placeholder_image) // Fallback for null URL
+                .load(article.urlToImage ?: R.drawable.placeholder_image)
                 .placeholder(R.drawable.placeholder_image)
                 .error(R.drawable.error_image)
                 .into(articleImage)

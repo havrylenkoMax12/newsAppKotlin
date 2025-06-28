@@ -36,29 +36,39 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>
         holder.binding.apply {
             categoryName.text = category.name
 
+            // Set background and text color based on selection state
             if (category.isSelected) {
                 categoryCard.setCardBackgroundColor(
-                    ContextCompat.getColor(root.context, R.color.secondaryBlue)
+                    ContextCompat.getColor(root.context, R.color.primary_color)
                 )
                 categoryName.setTextColor(
                     ContextCompat.getColor(root.context, android.R.color.white)
                 )
+                categoryCard.cardElevation = 8f
             } else {
                 categoryCard.setCardBackgroundColor(
-                    ContextCompat.getColor(root.context, R.color.primaryBlue)
+                    ContextCompat.getColor(root.context, R.color.light_gray)
                 )
                 categoryName.setTextColor(
-                    ContextCompat.getColor(root.context, R.color.black)
+                    ContextCompat.getColor(root.context, R.color.dark_gray)
                 )
+                categoryCard.cardElevation = 4f
             }
         }
 
         holder.itemView.setOnClickListener {
-
             val currentList = differ.currentList.toMutableList()
+            val previousSelectedIndex = currentList.indexOfFirst { it.isSelected }
+
             currentList.forEach { it.isSelected = false }
             currentList[position].isSelected = true
-            differ.submitList(currentList)
+
+            differ.submitList(currentList) {
+                if (previousSelectedIndex != -1) {
+                    notifyItemChanged(previousSelectedIndex)
+                }
+                notifyItemChanged(position)
+            }
 
             onItemClickListener?.let { it(category) }
         }
