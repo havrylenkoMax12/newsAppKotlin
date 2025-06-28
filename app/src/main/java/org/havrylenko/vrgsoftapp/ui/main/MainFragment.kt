@@ -109,7 +109,6 @@ class MainFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                // Отменяем предыдущий поиск
                 searchJob?.cancel()
 
                 if (newText.isNullOrBlank()) {
@@ -117,7 +116,6 @@ class MainFragment : Fragment() {
                     return true
                 }
 
-                // Запускаем поиск с задержкой 500ms
                 searchJob = lifecycleScope.launch {
                     delay(500)
                     if (newText.trim().isNotEmpty()) {
@@ -129,7 +127,6 @@ class MainFragment : Fragment() {
             }
         })
 
-        // Обработка кнопки очистки поиска
         mBinding.searchView.setOnCloseListener {
             viewModel.clearSearch()
             false

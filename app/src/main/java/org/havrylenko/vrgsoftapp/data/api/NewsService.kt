@@ -33,7 +33,7 @@ interface NewsService {
     @GET("v2/everything")
     suspend fun searchNews(
         @Query("q") query: String,
-        @Query("sortBy") sortBy: String = "popularity",
+        @Query("sortBy") sortBy: String = "publishedAt",
         @Query("page") page: Int = 1,
         @Query("apiKey") apiKey: String = API_KEY
     ): Response<NewsResponse>

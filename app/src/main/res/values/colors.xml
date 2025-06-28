@@ -5,4 +5,7 @@
     <color name="primaryBlue">#2D2E5A</color>
     <color name="secondaryBlue">#494AFF</color>
     <color name="splash">#0A1057</color>
+    <color name="primary_color">#2196F3</color>
+    <color name="light_gray">#F5F5F5</color>
+    <color name="dark_gray">#666666</color>
 </resources>
