@@ -12,15 +12,19 @@ import org.havrylenko.vrgsoftapp.databinding.ItemArticleFavouriteBinding
 import org.havrylenko.vrgsoftapp.models.Article
 import org.havrylenko.vrgsoftapp.utils.DateUtil
 
-class NewsAdapter(private val showDeleteButton: Boolean = false) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class NewsAdapter(private val showDeleteButton: Boolean = false) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val TYPE_NORMAL = 0
         private const val TYPE_FAVORITE = 1
     }
 
-    inner class NewsViewHolder(val binding: ItemArticleBinding) : RecyclerView.ViewHolder(binding.root)
-    inner class FavoriteNewsViewHolder(val binding: ItemArticleFavouriteBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class NewsViewHolder(val binding: ItemArticleBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+    inner class FavoriteNewsViewHolder(val binding: ItemArticleFavouriteBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     private val callback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
@@ -41,11 +45,17 @@ class NewsAdapter(private val showDeleteButton: Boolean = false) : RecyclerView.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             TYPE_FAVORITE -> {
-                val binding = ItemArticleFavouriteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                val binding = ItemArticleFavouriteBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
                 FavoriteNewsViewHolder(binding)
             }
+
             else -> {
-                val binding = ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                val binding =
+                    ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 NewsViewHolder(binding)
             }
         }

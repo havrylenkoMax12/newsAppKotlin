@@ -49,7 +49,8 @@ class CategoryFragment : Fragment() {
         categoryAdapter = CategoryAdapter()
         mBinding.recyclerViewCategories.apply {
             adapter = categoryAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
 
         newsAdapter = NewsAdapter()
@@ -81,6 +82,7 @@ class CategoryFragment : Fragment() {
                         newsAdapter.differ.submitList(newsResponse.articles)
                     }
                 }
+
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
@@ -89,6 +91,7 @@ class CategoryFragment : Fragment() {
                         }
                     }
                 }
+
                 is Resource.Loading -> {
                     showProgressBar()
                 }

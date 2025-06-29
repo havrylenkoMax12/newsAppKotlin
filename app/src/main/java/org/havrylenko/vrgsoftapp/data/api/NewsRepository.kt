@@ -12,7 +12,11 @@ class NewsRepository @Inject constructor(
         newsService.getTopHeadlines(country = countryCode, page = pageNumber)
 
     suspend fun getNewsByCategory(category: String, pageNumber: Int, countryCode: String = "us") =
-        newsService.getTopHeadlinesByCategory(country = countryCode, category = category, page = pageNumber)
+        newsService.getTopHeadlinesByCategory(
+            country = countryCode,
+            category = category,
+            page = pageNumber
+        )
 
     suspend fun getSearchNews(query: String, pageNumber: Int, sortBy: String = "publishedAt") =
         newsService.searchNews(query = query, page = pageNumber, sortBy = sortBy)

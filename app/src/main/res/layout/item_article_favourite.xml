@@ -54,11 +54,11 @@
             android:id="@+id/deleteButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Remove from favorites"
-            android:src="@drawable/delete"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="8dp" />
+            android:src="@drawable/delete" />
 
     </LinearLayout>
 

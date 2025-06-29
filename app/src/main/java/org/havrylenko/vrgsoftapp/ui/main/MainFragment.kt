@@ -78,15 +78,18 @@ class MainFragment : Fragment() {
                         }
                     }
                 }
+
                 is Resource.Error -> {
                     mBinding.pagProgressBar.visibility = View.GONE
                     response.message?.let {
                         Log.e("MainFragment", "Search Error: $it")
                     }
                 }
+
                 is Resource.Loading -> {
                     mBinding.pagProgressBar.visibility = View.VISIBLE
                 }
+
                 null -> {}
             }
         }
@@ -153,12 +156,14 @@ class MainFragment : Fragment() {
                     newsAdapter.differ.submitList(it.articles)
                 }
             }
+
             is Resource.Error -> {
                 mBinding.pagProgressBar.visibility = View.GONE
                 response.message?.let {
                     Log.e("MainFragment", "Error: $it")
                 }
             }
+
             is Resource.Loading -> {
                 mBinding.pagProgressBar.visibility = View.VISIBLE
             }

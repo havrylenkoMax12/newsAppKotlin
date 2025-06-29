@@ -11,7 +11,7 @@ import org.havrylenko.vrgsoftapp.data.api.NewsRepository
 import org.havrylenko.vrgsoftapp.models.Article
 
 @HiltViewModel
-class DetailsViewModel @Inject constructor(private val  repository: NewsRepository): ViewModel() {
+class DetailsViewModel @Inject constructor(private val repository: NewsRepository) : ViewModel() {
 
     init {
         getSavedArticles()
