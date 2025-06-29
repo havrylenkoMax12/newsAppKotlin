@@ -11,7 +11,7 @@ import org.havrylenko.vrgsoftapp.utils.Resource
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val repository: NewsRepository): ViewModel() {
+class MainViewModel @Inject constructor(private val repository: NewsRepository) : ViewModel() {
 
     val newsLiveData: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     val searchNewsLiveData: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()

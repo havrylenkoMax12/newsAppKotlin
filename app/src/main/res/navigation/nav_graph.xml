@@ -9,7 +9,7 @@
         android:id="@+id/mainFragment"
         android:name="org.havrylenko.vrgsoftapp.ui.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_detailsFragment"
             app:destination="@id/detailsFragment"
@@ -29,7 +29,7 @@
         android:id="@+id/detailsFragment"
         android:name="org.havrylenko.vrgsoftapp.ui.details.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" >
+        tools:layout="@layout/fragment_details">
         <argument
             android:name="article"
             app:argType="org.havrylenko.vrgsoftapp.models.Article" />
@@ -38,7 +38,7 @@
         android:id="@+id/categoryFragment"
         android:name="org.havrylenko.vrgsoftapp.ui.category.CategoryFragment"
         android:label="fragment_category"
-        tools:layout="@layout/fragment_category" >
+        tools:layout="@layout/fragment_category">
         <action
             android:id="@+id/action_categoryFragment_to_detailsFragment"
             app:destination="@id/detailsFragment"
@@ -51,7 +51,7 @@
         android:id="@+id/favouriteFragment"
         android:name="org.havrylenko.vrgsoftapp.ui.favourite.FavouriteFragment"
         android:label="fragment_favourite"
-        tools:layout="@layout/fragment_favourite" >
+        tools:layout="@layout/fragment_favourite">
         <action
             android:id="@+id/action_favouriteFragment_to_detailsFragment"
             app:destination="@id/detailsFragment"

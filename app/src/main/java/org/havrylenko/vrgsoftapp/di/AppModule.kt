@@ -3,6 +3,8 @@ package org.havrylenko.vrgsoftapp.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -52,10 +54,48 @@ object AppModule {
             context,
             ArticleDatabase::class.java,
             "article_database"
-        ).build()
+        ).addMigrations(MIGRATION_1_2)
+            .build()
 
     @Provides
     fun provideArticleDao(appDatabase: ArticleDatabase): ArticleDao {
         return appDatabase.getArticleDao()
+    }
+
+    val MIGRATION_1_2 = object : Migration(1, 2) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL("ALTER TABLE articles RENAME TO articles_old")
+
+            database.execSQL(
+                """
+            CREATE TABLE articles (
+                id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                author TEXT,
+                content TEXT,
+                description TEXT,
+                publishedAt TEXT,
+                title TEXT,
+                url TEXT,
+                urlToImage TEXT,
+                category TEXT
+            )
+        """.trimIndent()
+            )
+
+            database.execSQL("CREATE UNIQUE INDEX index_articles_url ON articles(url)")
+
+            database.execSQL(
+                """
+            INSERT OR IGNORE INTO articles (
+                id, author, content, description, publishedAt, title, url, urlToImage, category
+            )
+            SELECT 
+                id, author, content, description, publishedAt, title, url, urlToImage, NULL AS category
+            FROM articles_old
+        """.trimIndent()
+            )
+
+            database.execSQL("DROP TABLE articles_old")
+        }
     }
 }

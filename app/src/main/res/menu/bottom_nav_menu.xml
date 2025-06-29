@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/mainFragment"
-        android:title="@string/home"
-        android:icon="@drawable/home" />
+    <item
+        android:id="@+id/mainFragment"
+        android:icon="@drawable/home"
+        android:title="@string/home" />
 
-    <item android:id="@+id/categoryFragment"
-        android:title="@string/categories"
-        android:icon="@drawable/category" />
+    <item
+        android:id="@+id/categoryFragment"
+        android:icon="@drawable/category"
+        android:title="@string/categories" />
 </menu>

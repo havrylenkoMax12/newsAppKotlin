@@ -64,7 +64,11 @@ class DetailsFragment : Fragment() {
                             ContextCompat.startActivity(requireContext(), it, null)
                         }
                 } catch (e: Exception) {
-                    Toast.makeText(context, "The device doesn't have any browser to view the document!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        "The device doesn't have any browser to view the document!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
