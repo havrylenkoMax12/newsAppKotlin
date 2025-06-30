@@ -23,17 +23,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.fragment_splash)
+        if (savedInstanceState == null) {
+            CoroutineScope(Dispatchers.Main).launch {
+                delay(5000)
+                _binding = ActivityMainBinding.inflate(layoutInflater)
+                setContentView(binding.root)
 
-        CoroutineScope(Dispatchers.Main).launch {
-            delay(5000)
-            _binding = ActivityMainBinding.inflate(layoutInflater)
-            setContentView(binding.root)
+                val navHostFragment = supportFragmentManager
+                    .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+                val navController = navHostFragment.navController
 
-            val navHostFragment = supportFragmentManager
-                .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-            val navController = navHostFragment.navController
-
-            binding.bottomNavMenu.setupWithNavController(navController)
+                binding.bottomNavMenu.setupWithNavController(navController)
+            }
         }
     }
 
